@@ -35,4 +35,15 @@ class BarcodeScanner:
                 data = self.serial.readline().decode('utf-8').strip()  # Read a line from serial
                 if data:  # Check if data is not empty
                     print("Barcode scanned:", data)
-                    self.ba
+                    self.barcode = data
+            except Exception as e:
+                print("Error reading from scanner:", e)
+
+# Example usage:
+if __name__ == "__main__":
+    scanner = BarcodeScanner()
+    scanner.start()
+    try:
+        input("Press Enter to stop...\n")
+    finally:
+        scanner.stop()
